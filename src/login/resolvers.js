@@ -19,7 +19,7 @@ const resolvers = {
 				var token = await jwt.sign(tokenData, 'Secret Password', {expiresIn: 60 * 60 * 24})
 				return token
 			}else{
-				return "-1"
+				return -1
 			}
 		}			
 	}
