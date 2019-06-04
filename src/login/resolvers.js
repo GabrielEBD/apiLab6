@@ -11,13 +11,13 @@ const resolvers = {
 	Mutation: {
 		login: async (_, { credentials }) =>{
 			let res = await	generalRequest(`${URL}`, 'POST', credentials)
-			console.log(res)
 			if(res){
-				var tokenData = {
-					username: res
-				}
-				var token = await jwt.sign(tokenData, 'Secret Password', {expiresIn: 60 * 60 * 24})
-				return token
+				if(res === 'LDAPException found'){
+					return res
+				}else{
+					var token = await jwt.sign({username: res}, 'Secret Password', {expiresIn: 60 * 60 * 24})
+					return token
+				}				
 			}else{
 				return -1
 			}
