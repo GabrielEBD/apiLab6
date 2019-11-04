@@ -11,4 +11,6 @@ RUN npm install
 COPY . /git/academy-api/
 RUN npm run prepublish
 
+EXPOSE 5000
+
 CMD [ "npm", "run", "runServer" ]
